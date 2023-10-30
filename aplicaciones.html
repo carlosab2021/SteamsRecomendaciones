@@ -31,6 +31,7 @@
     <form method="post" action="/launch_app">
         <select id="appSelector" name="selected_app">
             <option value="recomendacion_juego">Recomendaciones por Item</option>
+            <option value="recomendacion_user_juego">Recomendaciones por Usuario</option>
         </select>
         
         <input type="text" name="input_data" placeholder="año, género, user_id o item_id">
@@ -42,20 +43,6 @@
       
     </div>
     
-    <div id="resultContainer">
-        <!-- Verifica si result está definido antes de mostrarlo -->
-        {% if result %}
-            <!-- Muestra el enlace para abrir el gráfico en una nueva ventana -->
-            <a href="/open_graph" target="_blank">Abrir gráfico interactivo</a>
-        {% else %}
-            <!-- Muestra un mensaje de que no hay resultados aún -->
-            <p>Para las APP Recomendaciones, ver los gráficos por Similitud</p>
-        {% endif %}
-    </div>
-    
-    <!-- Botón para abrir el gráfico interactivo -->
-    <button onclick="openGraph()">Abrir gráfico interactivo</button>
-
     <script>
         document.querySelector("form").addEventListener("submit", function (e) {
             e.preventDefault(); // Evita que el formulario se envíe normalmente.
@@ -80,11 +67,7 @@
             };
             xhr.send("selected_app=" + selectedApp + "&input_data=" + input_data);
         }
-
-        // Función para abrir el gráfico interactivo en una nueva ventana
-        function openGraph() {
-            window.open('/recommendation_plot.html', '_blank');
-        }
+        
     </script>
 </body>
 </html>
